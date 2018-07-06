@@ -1,11 +1,72 @@
-<h2>Sign up</h2>
+<center><h2>Sign up</h2></center>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
   
+  <center>
     
-  
+  <div class="field">
+    <%= f.label :FirstName %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :LastName %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :FatherName %><br />
+    <%= f.text_field :father_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :MotherName %><br />
+    <%= f.text_field :mother_name %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :Occupation %><br />
+    <%= f.text_field :occupation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :FatherOccupation %><br />
+    <%= f.text_field :father_occupation %>
+
+  <div class="field">
+    <%= f.label :MotherOccupation %><br />
+    <%= f.text_field :mother_occupation %>
+
+    <div class="field">
+    <%= f.label :MobileNo %><br />
+    <%= f.text_field :mobile_no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :BankName %><br />
+    <%= f.text_field :bank_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :AadharNo %><br />
+    <%= f.text_field :aadhar_no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :PanNo %><br />
+    <%= f.text_field :pan %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Document %><br />
+    <%= f.file_field :document %>
+  </div>
+
+  <div class="field">
+    <%= f.label :UserPhoto %><br />
+    <%= f.file_field :user_photo %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -25,9 +86,105 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+
+    <%= f.fields_for :local_address, LocalAddress.new do |localform| %>
+  <hr>
+  <h5><b>Local Address</b></h5>
+    <div class="field">
+      <%= localform.label :House_No %><br />
+      <%= localform.text_field :house_no %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :Stree_No %><br />
+      <%= localform.text_field :street_no %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :Area %><br />
+      <%= localform.text_field :area %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :city %><br />
+      <%= localform.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :state %><br />
+      <%= localform.text_field :state %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :country %><br />
+      <%= localform.text_field :country %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :PIN %><br />
+      <%= localform.text_field :pin %>
+    </div>
+
+    <div class="field">
+      <%= localform.label :address_proof %><br />
+      <%= localform.text_field :address_proof %>
+    </div>
+
+  <% end %>
+  
+  <%= f.fields_for :permanent_address,PermanentAddress.new do |permanentform| %>
+
+  <h5><b>Permanent Address</b></h5>
+    <div class="field">
+      <%= permanentform.label :House_No %><br />
+      <%= permanentform.text_field :house_no %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :Stree_No %><br />
+      <%= permanentform.text_field :street_no %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :Area %><br />
+      <%= permanentform.text_field :area %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :city %><br />
+      <%= permanentform.text_field :city %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :state %><br />
+      <%= permanentform.text_field :state %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :country %><br />
+      <%= permanentform.text_field :country %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :PIN %><br />
+      <%= permanentform.text_field :pin %>
+    </div>
+
+    <div class="field">
+      <%= permanentform.label :address_proof %><br />
+      <%= permanentform.text_field :address_proof %>
+    </div>
+
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
 
+</center>
+
 <%= render "devise/shared/links" %>
+
+
+
