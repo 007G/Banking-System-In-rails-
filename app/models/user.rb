@@ -12,6 +12,10 @@ class User < ApplicationRecord
           accepts_nested_attributes_for :local_address
           accepts_nested_attributes_for :permanent_address
 
+          mount_uploader :document, ImageUploader
+          mount_uploader :user_photo, ImageUploader
+
+
         after_create :assign_default_role
 
         def assign_default_role

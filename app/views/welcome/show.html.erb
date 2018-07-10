@@ -1,32 +1,35 @@
-<p>Name:<%= @user.first_name %> <%= @user.last_name %></p>
-<p>Occupation:<%= @user.occupation %></p>
-<p>Father's Name:<%= @user.father_name %></p>
-<p>Mother's Name:<%= @user.mother_name %></p>
-<p>Father's Occupation:<%= @user.father_occupation %></p>
-<p>Mother's Occupation:<%= @user.mother_occupation %></p>
-<p>Bank:<%= @user.bank_name %></p>
-<p>PAN:<%= @user.pan %></p>
-<p>Social Security Number:<%= @user.aadhar_no %></p>
+ 
+<p><b>Name:</b><%= @user.first_name %> <%= @user.last_name %></p>
+<p><b>Occupation:</b><%= @user.occupation %></p>
+<p><b>Father's Name:</b><%= @user.father_name %></p>
+<p><b>Mother's Name:</b><%= @user.mother_name %></p>
+<p><b>Father's Occupation:</b><%= @user.father_occupation %></p>
+<p><b>Mother's Occupation:</b><%= @user.mother_occupation %></p>
+<p><b>Bank:</b><%= @user.bank_name %></p>
+<p><b>PAN:</b><%= @user.pan %></p>
+<p><b>Aadhar Number:</b><%= @user.aadhar_no %></p>
+<p>Document:<%= link_to image_tag(@user.document.url(:thumb)), @user.document.url %></p>
+<p>User Photo:<%= link_to image_tag(@user.user_photo.url(:thumb)), @user.user_photo.url %></p>
 
-<h4>Permanent Address</h4>
-<p>House Number:<%= @user.permanent_address.house_no %></p>
-<p>Street Number:<%= @user.permanent_address.street_no %></p>
-<p>Area:<%= @user.permanent_address.area %></p>
-<p>City:<%= @user.permanent_address.city %></p>
-<p>State:<%= @user.permanent_address.state %></p>
-<p>Country:<%= @user.permanent_address.country %></p>
-<p>PIN:<%= @user.permanent_address.pin %></p>
-<p>Address Proof:<%= @user.permanent_address.address_proof %></p>
+<h2>Permanent Address</h2>
+<p><b>House Number:</b><%= @user.permanent_address.house_no %></p>
+<p><b>Street Number:</b><%= @user.permanent_address.street_no %></p>
+<p><b>Area:</b><%= @user.permanent_address.area %></p>
+<p><b>City:</b><%= @user.permanent_address.city %></p>
+<p><b>State:</b><%= @user.permanent_address.state %></p>
+<p><b>Country:</b><%= @user.permanent_address.country %></p>
+<p><b>PIN:</b><%= @user.permanent_address.pin %></p>
+<p><b>Address Proof:</b><%= @user.permanent_address.address_proof %></p>
 
-<h4>Local Address</h4>
-<p>House Number:<%= @user.local_address.house_no %></p>
-<p>Street Number:<%= @user.local_address.street_no %></p>
-<p>Area:<%= @user.local_address.area %></p>
-<p>City:<%= @user.local_address.city %></p>
-<p>State:<%= @user.local_address.state %></p>
-<p>Country:<%= @user.local_address.country %></p>
-<p>PIN:<%= @user.local_address.pin %></p>
-<p>Address Proof:<%= @user.local_address.address_proof %></p>
+<h2>Local Address</h2>
+<p><b>House Number:</b><%= @user.local_address.house_no %></p>
+<p><b>Street Number:</b><%= @user.local_address.street_no %></p>
+<p><b>Area:</b><%= @user.local_address.area %></p>
+<p><b>City:</b><%= @user.local_address.city %></p>
+<p><b>State:</b><%= @user.local_address.state %></p>
+<p><b>Country:</b><%= @user.local_address.country %></p>
+<p><b>PIN:</b><%= @user.local_address.pin %></p>
+<p><b>Address Proof:</b><%= @user.local_address.address_proof %></p>
 
 
 <% if !@user.verify %>
@@ -34,3 +37,8 @@
 <% else %>
   <b>Verified</b><br />
 <% end %>
+
+
+
+   
+
