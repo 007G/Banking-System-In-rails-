@@ -5,17 +5,17 @@
    </head>
    
    <body>
-      <h1>Welcome to Banking System, <%= @user.name %></h1>
+      <h1>Welcome to Banking System, <%= @user.first_name %></h1>
       
       <p>
-         You have successfully signed up to our site,your username is: 
-         <%= @user.login %>.<br>
+         You have successfully signed up to our bank,your email id is: 
+         <%= @user.email %>.<br>
       </p>
 
-      <p> Please wait , till we verify your details </p>
+      <p> Your Account has been verified by us. </p>
       
       <p>
-         To login to the site, just follow this link: 
+         To login ,just follow this link: 
          <%= @url %>.
       </p>
       

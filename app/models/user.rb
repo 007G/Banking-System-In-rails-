@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +11,12 @@ class User < ApplicationRecord
 
           accepts_nested_attributes_for :local_address
           accepts_nested_attributes_for :permanent_address
+
+        after_create :assign_default_role
+
+        def assign_default_role
+        self.add_role(:user) if self.roles.blank?
+        end
 
 
 

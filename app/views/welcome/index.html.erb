@@ -1,14 +1,16 @@
-<center><h1> Welcome to Online Banking System </h1></center>
+<% if(current_user.has_role?(:user) && !current_user.verify) %>
 
   <h1><strong>Hello <%= current_user.first_name %>!</strong></h1>
 
+  <p>Welcome to Banking System,</p>
   <p>Your account has been created successfully</p>
   <p>You will recieve an confirmation email once your information gets verified and then you will be able to access your account</p>
 
   <p>Thanks for joining us, Have a great day!</p>
+<% end %>
 
-
-
+<% if current_user.has_role? :admin %>
+  <h1><strong>Hello Admin</strong></h1>
 
   <table class="table table-striped">
     <thead>
@@ -19,7 +21,7 @@
         <th>Mobile Number</th>
         <th>Bank Name</th>
         <th>PAN</th>
-        <th>AADHAR NO</th>
+        <th>AADHAR Number</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -39,8 +41,10 @@
         <% else %>
           <td>Not Verified</td>
         <% end %>    
-        <td><%= link_to "Click to view"%></td>
+        <td><%= link_to "Click to view more details",welcome_path(user)%></td>
       </tr>
     <% end %>
 </tbody>
-</table>
+<% end %>
+
+<%= will_paginate @user %> 
