@@ -1,0 +1,28 @@
+<div class="form-horizontal">
+  <%= form_with model: @benificiary do |form| %>
+
+  <div class="form-group">
+    <%= form.label :account_no, "Account Number", class: "col-md-8 control-label" %>
+    <div class="col-md-4">
+      <%= form.text_field :account_no, class: "form-control" %><br />
+    </div>
+  </div>
+ 
+ <div class="form-group">
+   <%= form.label :first_name, "FirstName", class: "col-md-8 control-label" %>
+   <div class="col-md-4">
+     <%= form.text_field :first_name, class: "form-control" %><br />
+    </div>
+ </div>
+
+
+  <div class="form-group">
+   <%= form.label :last_name, "LastName", class: "col-md-8 control-label" %>
+   <div class="col-md-4">
+     <%= form.text_field :last_name, class: "form-control" %><br />
+    </div>
+  </div>
+
+  <%= form.submit "Add", class: "btn btn-success" %>
+</div>
+<% end %>

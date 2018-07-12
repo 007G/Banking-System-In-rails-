@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <tr>
+      <th>FirstName:</th>
+      <th>LastName:</th>
+      <th>Account No: </th>
+    </tr>
+  </thead>
+
+<% @benificiaries.each do|benificiary| %>
+  <tr>
+
+    <td> <%= benificiary.first_name %> </td>
+    <td> <%= benificiary.last_name %>  </td>
+    <td> <%= benificiary.account_no %> </td>
+
+   </tr>
+<% end %>    
+
+</table>
+

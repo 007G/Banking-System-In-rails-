@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'benificiaries/index'
+  get 'benificiaries/show'
   devise_for :users, controllers: { confirmations: 'confirmations' }
  
   get 'welcome/index'
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   
   resources :welcome 
    
-  
+  resources :benificiaries
 
   resources :users do
     get 'verify', on: :member

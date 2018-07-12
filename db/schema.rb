@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_070213) do
+ActiveRecord::Schema.define(version: 2018_07_12_060256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 2018_07_11_070213) do
     t.integer "pin"
     t.text "address_proof"
     t.integer "user_id"
+  end
+
+  create_table "benificiaries", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "account_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+  end
+
+  create_table "benificiaries_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "benificiary_id"
   end
 
   create_table "roles", force: :cascade do |t|
