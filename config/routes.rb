@@ -11,6 +11,8 @@ Rails.application.routes.draw do
    
   resources :benificiaries
 
+  resources :transactions
+
   resources :users do
     get 'verify', on: :member
   end 

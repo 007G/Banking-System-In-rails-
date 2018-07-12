@@ -9,6 +9,7 @@ class User < ApplicationRecord
           has_one :permanent_address, dependent: :destroy
           has_one :local_address, dependent: :destroy
           has_one :account, dependent: :destroy
+          has_many :transactions, dependent: :destroy
 
           has_and_belongs_to_many :benificiaries
 
