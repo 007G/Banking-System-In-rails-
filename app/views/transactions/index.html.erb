@@ -1,0 +1,17 @@
+<table class="table table-striped">
+  <tr>
+    <th>Amount</th>
+    <th>Account Number</th>
+  </tr>
+
+  <% @transactions.each do  |transaction| %>
+    <tr>
+      <td><%= transaction.amount %> Rs.</td>
+      <td><%= transaction.account_no %></td>  
+    </tr>
+  <% end %>
+  <tr colspan="4"><b>Balance: <%= current_user.account.balance %></b></tr>
+</table>
+
+  <%= link_to "Back",root_path %>
+

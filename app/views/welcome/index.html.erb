@@ -53,9 +53,11 @@
   <p align="right">Acc no:<%= current_user.account.account_no %></p
   >
 
-  <%= link_to "Add Benificiary",new_benificiary_path %><br>
-  <%= link_to "Show Added Benificiary",benificiaries_index_path %><br>
-  <%= link_to "Fund Transfer",new_transaction_path %>
+  <%= link_to "Add Benificiary",new_benificiary_path,  class: "btn btn-primary" %><br>
+  <%= link_to "Show Added Benificiary",benificiaries_index_path,  class: "btn btn-primary" %><br>
+  <%= link_to "Fund Transfer",new_transaction_path,  class: "btn btn-primary" %><br>
+    <%= link_to "Transfer History",transactions_path,  class: "btn btn-primary" %>
+
 
     
 <% end %>  
