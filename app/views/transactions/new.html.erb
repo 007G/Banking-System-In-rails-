@@ -2,7 +2,7 @@
   <%= form_with model: @transaction do |form| %>
     
         <div class="form-group">
-      <%= form.label :account, "Amount to transfer", class: "col-md-4 control-label" %>
+      <%= form.label :account0, "Amount to transfer", class: "col-md-4 control-label" %>
       <div class="col-md-8">
         <%= form.text_field :account_no, class: "form-control" %><br />
       </div>
@@ -10,7 +10,7 @@
 
 
     <div class="form-group">
-      <%= form.label :amount, "Amount to transfer", class: "col-md-4 control-label" %>
+      <%= form.label :amount0, "Amount to transfer", class: "col-md-4 control-label" %>
       <div class="col-md-8">
         <%= form.text_field :amount, class: "form-control" %><br />
       </div>

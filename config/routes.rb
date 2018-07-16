@@ -11,7 +11,12 @@ Rails.application.routes.draw do
    
   resources :benificiaries
 
-  resources :transactions
+  resources :transactions, only: [:index, :new, :create] do
+  get 'download_mini_statement', on: :member
+  end  
+
+
+ 
 
   resources :users do
     get 'verify', on: :member
