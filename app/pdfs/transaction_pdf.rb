@@ -12,9 +12,10 @@ class TransactionPdf < Prawn::Document
     
      
     end
+
     
 
-      def table_content
+    def table_content
     # This makes a call to product_rows and gets back an array of data that will populate the columns and rows of a table
     # I then included some styling to include a header and make its text bold. I made the row background colors alternate between grey and white
     # Then I set the table column widths
@@ -26,7 +27,7 @@ class TransactionPdf < Prawn::Document
     end
   end
 
-     def product_rows
+    def product_rows
     [['#', 'Amount']] +
       @transactions.map do |transaction|
       [transaction.id, transaction.amount]
@@ -35,4 +36,4 @@ class TransactionPdf < Prawn::Document
 
 
 
-end
+end 

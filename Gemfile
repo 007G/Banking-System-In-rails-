@@ -42,6 +42,8 @@ gem 'receipts'
 
 gem 'prawn'
 
+gem 'cancancan'
+
 
 
 

@@ -1,0 +1,40 @@
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Occupation</th>
+        <th>Mobile Number</th>
+        <th>Bank Name</th>
+        <th>PAN</th>
+        <th>AADHAR Number</th>
+        <th>Bank</th>
+        <th>Document</th>
+        <th>User Photo</th>
+        <th>Status</th>
+        <th>Verify</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.occupation %></td>
+        <td><%= user.mobile_no %></td>
+        <td><%= user.bank_name %></td>
+        <td><%= user.pan %></td>
+        <td><%= user.aadhar_no %></td>
+        <td><%= user.bank_name %></td>
+        <td><%= link_to image_tag(user.document.url(:thumb)), user.document.url %></td>
+        <td><%= link_to image_tag(user.user_photo.url(:thumb)), user.user_photo.url %></td>
+        <% if user.verify %>
+          <td>Verified</td>
+        <% else %>
+          <td>Not Verified</td>
+          <td><%= link_to "Verify", verify_user_path(user), class: "btn btn-success" %><td>
+        <% end %> 
+      </tr>
+    <% end %>
+</tbody>

@@ -1,3 +1,12 @@
+
+<% if current_user.has_role? :admin or current_user.has_role? :manager %>
+  <h1><strong>Hello Admin</strong></h1>
+
+   <%= render 'admin' %>
+
+<% end %>
+
+
 <% if(current_user.has_role?(:user) && !current_user.verify) %>
 
   <h1><strong>Hello <%= current_user.first_name %>!</strong></h1>
@@ -9,57 +18,16 @@
   <p>Thanks for joining us, Have a great day!</p>
 <% end %>
 
-<% if current_user.has_role? :admin or current_user.has_role? :manager %>
-  <h1><strong>Hello Admin</strong></h1>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Occupation</th>
-        <th>Mobile Number</th>
-        <th>Bank Name</th>
-        <th>PAN</th>
-        <th>AADHAR Number</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-
-    <tbody>
-    <% User.all.each do |user| %>
-      <tr>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td><%= user.occupation %></td>
-        <td><%= user.mobile_no %></td>
-        <td><%= user.bank_name %></td>
-        <td><%= user.pan %></td>
-        <td><%= user.aadhar_no %></td>
-        <% if user.verify %>
-          <td>Verified</td>
-        <% else %>
-          <td>Not Verified</td>
-        <% end %>    
-        <td><%= link_to "Click to view more details",welcome_path(user)%></td>
-      </tr>
-    <% end %>
-</tbody>
-<% end %>
 
 <% if(current_user.has_role?(:user) && current_user.verify) %>
- <center><strong> <h1><p>Welcome to Banking System</p></h1></strong></center>
-  <p align="right">Hello <%= current_user.first_name %></p>
-  <p align="right">Acc no:<%= current_user.account.account_no %></p
-  >
-
-  <%= link_to "Add Benificiary",new_benificiary_path,  class: "btn btn-primary" %><br>
-  <%= link_to "Show Added Benificiary",benificiaries_index_path,  class: "btn btn-primary" %><br>
-  <%= link_to "Fund Transfer",new_transaction_path,  class: "btn btn-primary" %><br>
-    <%= link_to "Transfer History",transactions_path,  class: "btn btn-primary" %>
-
-
-    
+    <%= render 'verifieduser' %>
 <% end %>  
 
-<%= will_paginate @user %> 
+
+
+
+
+
+
+

@@ -10,4 +10,16 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Welcome to Banking System")
   end  
 
+  def benificiary_added(user)
+    @user = user
+
+    mail(to: @user.email, subject: "Beneficiary Added Successfully")
+end
+
+def transaction_done(user)
+  @user = user
+  mail(to: @user.email, subject: "Transaction Done Successfully")
+
+end  
+
 end

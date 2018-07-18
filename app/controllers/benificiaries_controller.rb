@@ -13,6 +13,7 @@ class BenificiariesController < ApplicationController
     
     if account && account.user.verify && account != current_user.account
       Benificiary.create(benificiary_params)
+      UserMailer.benificiary_added(current_user).deliver
       current_user.benificiaries << Benificiary.last
       redirect_to  benificiaries_path
     else

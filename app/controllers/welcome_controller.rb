@@ -1,9 +1,7 @@
 class WelcomeController < ApplicationController
   def index
-  @user = User.paginate(:page => params[:page], :per_page => 7)
+  @users = User.all
+  @address = Address.all
   end
 
-  def show
-  @user = User.find(params[:id])
-  end 
 end
