@@ -32,7 +32,7 @@ class User < ApplicationRecord
 
 
 
-
+     
 
 
 end

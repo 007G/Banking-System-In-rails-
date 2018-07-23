@@ -1,39 +1,59 @@
+
 class TransactionPdf < Prawn::Document
   def initialize(transactions_details, user)
     super(top_margin: 20)
     @transactions = transactions_details
     @user = user
-    content
-    table_content
+    # @account = user.account
+    account
+    transactions
+    net_balance
   end
 
-
-    def content
-    
-     
-    end
-
-    
-
-    def table_content
-    # This makes a call to product_rows and gets back an array of data that will populate the columns and rows of a table
-    # I then included some styling to include a header and make its text bold. I made the row background colors alternate between grey and white
-    # Then I set the table column widths
-    table product_rows do
+  def account
+    text "Mini Statement for Account: #{@user.account.account_no}",size: 15, style: :italic
+  end
+  
+  def transactions
+    move_down(30)
+    table transactions_rows do
       row(0).font_style = :bold
-      self.header = true
+      columns(1..4).align = :center
       self.row_colors = ['DDDDDD', 'FFFFFF']
-      self.column_widths = [40, 300, 200]
+      self.header = true
     end
   end
 
-    def product_rows
-    [['#', 'Amount']] +
-      @transactions.map do |transaction|
-      [transaction.id, transaction.amount]
+  def transactions_rows
+    [["Account_number", "Amount", "Time", "Transaction"]] +
+    @transactions.map do |transaction|
+      [
+        account_no(transaction.account_no, transaction.user.account_no),
+        transaction.amount,
+        transaction.created_at.strftime("%d-%m-%Y --%H-%M-%S"),
+        transaction_type(transaction.account)
+      ]
     end
   end
 
+  def account_no(to_account, from_account)
+    if to_account  == @user.account.account_no
+      from_account.account_no
+    else
+      to_account
+    end
+  end
 
+  def transaction_type(to_account)
+    if to_account == @user.account.id
+      'CREDIT'
+    else
+      'DEBIT'
+    end
+  end
 
-end 
+  def net_balance
+    move_down(30)
+    text  "BALANCE: #{ @user.account.balance.to_s } Rs.", style: :bold
+  end
+end

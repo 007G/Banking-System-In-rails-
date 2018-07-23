@@ -7,9 +7,6 @@ def permitted_parameters
   
 end
 
-def restrict_access
-  redirect_to root_path, :alert => "Access denied"
-end
 
 end
 

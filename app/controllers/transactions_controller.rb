@@ -1,7 +1,10 @@
 class TransactionsController < ApplicationController
 
  def index
-    @transactions = Transaction.all
+    @transactions_c = Transaction.where(account_id: current_user.account.id)
+    @transactions_d = current_user.transactions
+    @transactions = @transactions_c.or(@transactions_d).order("created_at")
+
  end
   
   def new
@@ -20,20 +23,61 @@ class TransactionsController < ApplicationController
       from_account.update_columns(balance: (from_account.balance.to_i - amount.to_i))
 
       Transaction.create!( user_id: current_user.id,account_no: to_account.id, amount: amount)
-      UserMailer.transaction_done(current_user).deliver
-
       redirect_to transactions_path
     else
-      redirect_to new_transaction_path
       flash[:notice] = "Please provide valid account number"
+      redirect_to new_transaction_path
     end     
   end
 
+  def d_mini_statement
+    @transactions_c = Transaction.where(account_id: current_user.account.id)
+    @transactions_d = current_user.transactions
+    @transactions = @transactions_c.or(@transactions_d).order("created_at")
 
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = TransactionPdf.new(@transactions, current_user)
 
-
-
+        send_data pdf.render,
+                  filename: "Ministatement_#{ current_user.first_name }.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
+    end
 end
+
+
+   def download_mini_statement
+  
+      respond_to do |format|
+      format.html
+      format.pdf do
+      pdf = Prawn::Document.new
+      pdf.text "Hello #{current_user.last_name}"
+      pdf.text "Email : #{current_user.email}"
+      pdf.text "Account No :#{current_user.account.account_no}"
+      pdf.text "Balance: #{current_user.account.balance}"
+
+
+      send_data pdf.render,
+                  filename: "transaction.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
+    end
+  end
+
+
+     
+    
+end
+
+
+
+
+
 
 
  

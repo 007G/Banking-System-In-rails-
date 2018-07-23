@@ -1,18 +1,29 @@
 <table class="table table-striped">
   <tr>
     <th>Amount</th>
-    <th>Account Number</th>
+    <th>Date</th>
+    <th>Account Id</th>
+    <th>Transaction Type</th>
   </tr>
 
-  <% @transactions.each do  |transaction| %>
+  <% current_user.transactions.each do  |transaction| %>
     <tr>
       <td><%= transaction.amount %> Rs.</td>
-      <td><%= transaction.account_no %></td>  
+      <td><%= transaction.created_at.strftime("%m/%d/%Y") %></td>
+      <% if transaction.account_no == current_user.account_no %>
+        <td><%= transaction.user.account.account_no %></td>
+        <td>Credit</td>
+      <% else %>
+        <td><%= transaction.account_no %></td>
+        <td>Debit</td>
+      <% end %>
     </tr>
   <% end %>
   <tr colspan="4"><b>Balance: <%= current_user.account.balance %></b></tr>
 </table>
 
-  <%= link_to "Back",root_path %>
+ <b><%= link_to "Download Mini Statement", download_mini_statement_transaction_path(current_user.id, format: 'pdf') %></b> </br>
+<b><%= link_to "Download Detailed Statements", d_mini_statement_transaction_path(current_user.id, format: 'pdf') %></b></br>
+ <%= link_to "Back",root_path %>
 
-<b><%= link_to "Download Statements", download_mini_statement_transaction_path(current_user.id, format: 'pdf') %></b>
+ 
