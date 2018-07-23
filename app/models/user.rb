@@ -19,6 +19,15 @@ class User < ApplicationRecord
           mount_uploader :document, ImageUploader
           mount_uploader :user_photo, ImageUploader
 
+          validates :first_name, presence: true
+          validates :last_name,  presence: true
+          validates :bank_name,  presence: true
+          validates :mobile_no, numericality: { only_integer: true }
+          validates :aadhar_no, numericality: { only_integer: true }
+
+
+
+
 
         after_create :assign_default_role, :account_no
 

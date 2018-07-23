@@ -20,7 +20,9 @@
 
 
 
-<% if(current_user.has_role?(:user) && current_user.verify) %>
+
+
+<% if (!current_user.has_role? :admin) && (!current_user.has_role? :manager) %>
     <%= render 'verifieduser' %>
 <% end %>  
 

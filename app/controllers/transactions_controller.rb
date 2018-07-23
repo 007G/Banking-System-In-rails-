@@ -44,9 +44,9 @@ class TransactionsController < ApplicationController
                   filename: "Ministatement_#{ current_user.first_name }.pdf",
                   type: 'application/pdf',
                   disposition: 'inline'
-      end
+         end
+       end
     end
-end
 
 
    def download_mini_statement
