@@ -6,9 +6,6 @@ class Transaction < ApplicationRecord
   validates :amount, numericality: { only_integer: true }
 
 
-  def benificiary_exist?
-    current_user.benificiaries.where(account_no: @account_no).first
-  end
 
   
 

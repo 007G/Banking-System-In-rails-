@@ -24,12 +24,12 @@ class User < ApplicationRecord
           validates :bank_name,  presence: true
           validates :mobile_no, numericality: { only_integer: true }
           validates :aadhar_no, numericality: { only_integer: true }
+          validates :document, presence: true
+          validates :user_photo, presence: true
 
 
 
-
-
-        after_create :assign_default_role, :account_no
+        after_create :assign_default_role, :account_no, :send_welcome_message
 
         def assign_default_role
         self.add_role(:user) if self.roles.blank?
@@ -37,12 +37,15 @@ class User < ApplicationRecord
 
         def account_no
           Account.create!(account_no: rand(10 ** 10).to_i, user_id: self.id)
-        end  
+        end 
+
+        def send_welcome_message
+          UserMailer.verify_user(self).deliver
+        end
 
 
 
-     
 
-
+        
 end
 

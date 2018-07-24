@@ -1,4 +1,5 @@
 class BenificiariesController < ApplicationController
+
   def index
     @benificiaries = current_user.benificiaries
   end
@@ -22,6 +23,8 @@ class BenificiariesController < ApplicationController
     end
   end
 
+
+
   private
 
   def benificiary_params
@@ -29,7 +32,7 @@ class BenificiariesController < ApplicationController
   end
 
 
-  end  
+end  
   
 
 

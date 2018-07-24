@@ -44,6 +44,8 @@ gem 'prawn'
 
 gem 'cancancan'
 
+gem 'country_select'
+
 
 
 

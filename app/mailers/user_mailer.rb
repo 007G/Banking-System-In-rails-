@@ -14,12 +14,12 @@ class UserMailer < ApplicationMailer
     @user = user
 
     mail(to: @user.email, subject: "Beneficiary Added Successfully")
-end
+  end
 
-def transaction_done(user)
-  @user = user
-  mail(to: @user.email, subject: "Transaction Done Successfully")
+  def transaction_done(user)
+    @user = user
+    mail(to: @user.email, subject: "Transaction Done Successfully")
 
-end  
+  end  
 
 end

@@ -10,4 +10,4 @@
     @amount = amount
 
     mail(to: @user.email, subject: "Amount credited to your account")
-end
+  end

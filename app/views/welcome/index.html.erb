@@ -7,7 +7,7 @@
 <% end %>
 
 
-<% if(current_user.has_role?(:user) && !current_user.verify) %>
+<% if(current_user.has_role? :user) && (!current_user.verify) %>
 
   <h1><strong>Hello <%= current_user.first_name %>!</strong></h1>
 
@@ -22,7 +22,7 @@
 
 
 
-<% if (!current_user.has_role? :admin) && (!current_user.has_role? :manager) %>
+<% if (!current_user.has_role? :admin) && (!current_user.has_role? :manager) && (current_user.verify)%>
     <%= render 'verifieduser' %>
 <% end %>  
 

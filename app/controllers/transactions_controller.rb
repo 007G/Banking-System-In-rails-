@@ -7,28 +7,28 @@ class TransactionsController < ApplicationController
 
  end
   
-  def new
-    @transaction = Transaction.new
-  end
+ def new
+   @transaction = Transaction.new
+ end
 
-  def create
-    @account_no = params[:transaction].values[0]
-    amount = params[:transaction].values[1]
+ def create
+  @account_no = params[:transaction].values[0]
+  amount = params[:transaction].values[1]
   
-    from_account = current_user.account
-    to_account = Account.find_by_account_no(@account_no)
+  from_account = current_user.account
+  to_account = Account.find_by_account_no(@account_no)
      
     if benificiary_exist?
-      to_account.update_columns(balance: (to_account.balance.to_i + amount.to_i))
-      from_account.update_columns(balance: (from_account.balance.to_i - amount.to_i))
+      to_account.update(balance: (to_account.balance.to_i + amount.to_i))
+      from_account.update(balance: (from_account.balance.to_i - amount.to_i))
 
       Transaction.create!( user_id: current_user.id,account_no: to_account.id, amount: amount)
       redirect_to transactions_path
-    else
-      flash[:notice] = "Please provide valid account number"
-      redirect_to new_transaction_path
-    end     
-  end
+      else
+        flash[:notice] = "Please provide valid account number"
+        redirect_to new_transaction_path
+      end     
+ end
 
   def d_mini_statement
     @transactions_c = Transaction.where(account_id: current_user.account.id)
@@ -47,6 +47,11 @@ class TransactionsController < ApplicationController
          end
        end
     end
+
+    def benificiary_exist?
+      current_user.benificiaries.where(account_no: @account_no).first
+    end
+
 
 
    def download_mini_statement
@@ -70,12 +75,11 @@ class TransactionsController < ApplicationController
   end
 
 
+
+
      
     
 end
-
-
-
 
 
 
