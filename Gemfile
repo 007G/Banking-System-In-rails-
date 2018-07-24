@@ -46,6 +46,8 @@ gem 'cancancan'
 
 gem 'country_select'
 
+gem 'client_side_validations'
+
 
 
 
