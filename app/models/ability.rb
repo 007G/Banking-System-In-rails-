@@ -17,7 +17,7 @@ class Ability
     elsif user.has_role? :user
       can :create, Account
       can [:create, :read], Benificiary
-      can [:create, :read], Transaction if current_user == verify
+      can [:create, :read], Transaction 
     elsif user.has_role? :manager
       can [:verify, :read], User   
     end

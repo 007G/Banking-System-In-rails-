@@ -76,6 +76,7 @@ class TransactionsController < ApplicationController
     end
   end
    
+  private
 
   def redirect_to_root
    if  !current_user.verify

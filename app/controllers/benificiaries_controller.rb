@@ -1,4 +1,6 @@
 class BenificiariesController < ApplicationController
+  before_action :redirect_to_root, only: [:index]
+
 
   def index
     @benificiaries = current_user.benificiaries
@@ -30,6 +32,13 @@ class BenificiariesController < ApplicationController
   def benificiary_params
     params.require(:benificiary).permit(:first_name, :last_name, :account_no).merge(user_id: current_user.id)
   end
+
+  def redirect_to_root
+   if  !current_user.verify
+       redirect_to root_path
+   end
+  end
+
 
 
 end  
