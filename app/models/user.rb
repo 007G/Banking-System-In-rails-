@@ -28,7 +28,7 @@ class User < ApplicationRecord
           validates :user_photo, presence: true
 
 
-
+        
         after_create :assign_default_role, :account_no, :send_welcome_message
 
         def assign_default_role
@@ -44,8 +44,6 @@ class User < ApplicationRecord
         end
 
 
-
-
-        
+                
 end
 

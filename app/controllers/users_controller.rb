@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+ 
   def verify
      @user = User.find(params[:id])
      @user.update_columns(verify: true)

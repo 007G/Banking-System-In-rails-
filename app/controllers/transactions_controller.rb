@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
 
+ before_action :redirect_to_root, only: [:index]
+
  def index
     @transactions_c = Transaction.where(account_id: current_user.account.id)
     @transactions_d = current_user.transactions
@@ -73,8 +75,13 @@ class TransactionsController < ApplicationController
       end
     end
   end
+   
 
-
+  def redirect_to_root
+   if  !current_user.verify
+       redirect_to root_path
+   end
+  end
 
 
      
