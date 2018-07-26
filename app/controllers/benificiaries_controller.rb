@@ -1,5 +1,5 @@
 class BenificiariesController < ApplicationController
-  before_action :redirect_to_root, only: [:index]
+   before_action :redirect_to_root, only: [:index]
 
 
   def index
@@ -16,7 +16,6 @@ class BenificiariesController < ApplicationController
     
     if account && account.user.verify && account != current_user.account
       Benificiary.create(benificiary_params)
-      UserMailer.benificiary_added(current_user).deliver
       current_user.benificiaries << Benificiary.last
       redirect_to  benificiaries_path
     else
@@ -33,11 +32,6 @@ class BenificiariesController < ApplicationController
     params.require(:benificiary).permit(:first_name, :last_name, :account_no).merge(user_id: current_user.id)
   end
 
-  def redirect_to_root
-   if  !current_user.verify
-       redirect_to root_path
-   end
-  end
 
 
 

@@ -10,8 +10,9 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Welcome to Banking System")
   end  
 
-  def benificiary_added(user)
-    @user = user
+  def benificiary_added(user_id)
+    @user = User.find_by(id: user_id)
+
 
     mail(to: @user.email, subject: "Beneficiary Added Successfully")
   end

@@ -7,5 +7,12 @@ class ApplicationController < ActionController::Base
     
   end
 
+  def redirect_to_root
+   if  !current_user.verify
+       redirect_to root_path
+   end
+  end
+
+
 end
 

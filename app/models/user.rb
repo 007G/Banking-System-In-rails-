@@ -43,6 +43,8 @@ class User < ApplicationRecord
           UserMailer.verify_user(self).deliver
         end
 
+        
+
 
                 
 end

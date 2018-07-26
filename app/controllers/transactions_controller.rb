@@ -72,20 +72,10 @@ class TransactionsController < ApplicationController
                   filename: "transaction.pdf",
                   type: 'application/pdf',
                   disposition: 'inline'
-      end
-    end
-  end
-   
-  private
-
-  def redirect_to_root
-   if  !current_user.verify
-       redirect_to root_path
+       end
+     end
    end
-  end
-
-
-     
+   
     
 end
 
