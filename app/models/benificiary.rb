@@ -6,9 +6,8 @@ class Benificiary < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true 
 
-def send_benificiary_message
-  UserMailer.benificiary_added(user_id).deliver
-end
-
+  def send_benificiary_message
+    UserMailer.benificiary_added(user_id).deliver
+  end
 
 end

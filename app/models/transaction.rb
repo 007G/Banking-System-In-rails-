@@ -6,9 +6,6 @@ class Transaction < ApplicationRecord
   validates :account_no, numericality: { only_integer: true }
   validates :amount, numericality: { only_integer: true }
 
-
-  
-
 end
 
 

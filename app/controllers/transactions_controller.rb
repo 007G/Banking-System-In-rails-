@@ -1,24 +1,23 @@
 class TransactionsController < ApplicationController
 
- before_action :redirect_to_root, only: [:index]
+  before_action :redirect_to_root, only: [:index]
 
- def index
-    @transactions_c = Transaction.where(account_id: current_user.account.id)
-    @transactions_d = current_user.transactions
-    @transactions = @transactions_c.or(@transactions_d).order("created_at")
-
- end
+  def index
+   @transactions_c = Transaction.where(account_id: current_user.account.id)
+   @transactions_d = current_user.transactions
+   @transactions = @transactions_c.or(@transactions_d).order("created_at")
+  end
   
- def new
+  def new
    @transaction = Transaction.new
- end
+  end
 
- def create
-  @account_no = params[:transaction].values[0]
-  amount = params[:transaction].values[1]
+  def create
+   @account_no = params[:transaction].values[0]
+   amount = params[:transaction].values[1]
   
-  from_account = current_user.account
-  to_account = Account.find_by_account_no(@account_no)
+   from_account = current_user.account
+   to_account = Account.find_by_account_no(@account_no)
      
     if benificiary_exist?
       to_account.update(balance: (to_account.balance.to_i + amount.to_i))
@@ -30,7 +29,7 @@ class TransactionsController < ApplicationController
         flash[:notice] = "Please provide valid account number"
         redirect_to new_transaction_path
       end     
- end
+  end
 
   def d_mini_statement
     @transactions_c = Transaction.where(account_id: current_user.account.id)
@@ -48,35 +47,31 @@ class TransactionsController < ApplicationController
                   disposition: 'inline'
          end
        end
-    end
+  end
 
-    def benificiary_exist?
-      current_user.benificiaries.where(account_no: @account_no).first
-    end
-
-
-
-   def download_mini_statement
-  
-      respond_to do |format|
-      format.html
-      format.pdf do
-      pdf = Prawn::Document.new
-      pdf.text "Hello #{current_user.last_name}"
-      pdf.text "Email : #{current_user.email}"
-      pdf.text "Account No :#{current_user.account.account_no}"
-      pdf.text "Balance: #{current_user.account.balance}"
+  def benificiary_exist?
+   current_user.benificiaries.where(account_no: @account_no).first
+  end
 
 
-      send_data pdf.render,
+
+  def download_mini_statement
+   pdf_file = TransactionService.new(current_user).run
+   respond_to do |format|
+   format.html
+   format.pdf do
+   #pdf = Prawn::Document.new 
+
+      
+   send_data pdf_file.render,
                   filename: "transaction.pdf",
                   type: 'application/pdf',
                   disposition: 'inline'
        end
      end
-   end
+  end
    
-    
+
 end
 
 
