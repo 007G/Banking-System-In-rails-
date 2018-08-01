@@ -5,7 +5,6 @@ def initialize(user)
   end
 
   def run
-    
     pdf = Prawn::Document.new
     pdf.text "Hello #{@user.last_name}"
     pdf.text "Email : #{@user.email}"
@@ -13,4 +12,5 @@ def initialize(user)
     pdf.text "Balance: #{@user.account.balance}"
     pdf
   end
+
 end

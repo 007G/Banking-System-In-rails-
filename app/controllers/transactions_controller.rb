@@ -32,16 +32,12 @@ class TransactionsController < ApplicationController
   end
 
   def d_mini_statement
-    @transactions_c = Transaction.where(account_id: current_user.account.id)
-    @transactions_d = current_user.transactions
-    @transactions = @transactions_c.or(@transactions_d).order("created_at")
-
+    pdf_file = TransactionPdfService.new(current_user).run
     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = TransactionPdf.new(@transactions, current_user)
+    format.html
+    format.pdf do
 
-        send_data pdf.render,
+    send_data pdf_file.render,
                   filename: "Ministatement_#{ current_user.first_name }.pdf",
                   type: 'application/pdf',
                   disposition: 'inline'
