@@ -15,7 +15,6 @@ class TransactionsController < ApplicationController
   def create
    @account_no = params[:transaction].values[0]
    amount = params[:transaction].values[1]
-  
    from_account = current_user.account
    to_account = Account.find_by_account_no(@account_no)
      
@@ -36,7 +35,6 @@ class TransactionsController < ApplicationController
     respond_to do |format|
     format.html
     format.pdf do
-
     send_data pdf_file.render,
                   filename: "Ministatement_#{ current_user.first_name }.pdf",
                   type: 'application/pdf',
@@ -49,16 +47,12 @@ class TransactionsController < ApplicationController
    current_user.benificiaries.where(account_no: @account_no).first
   end
 
-
-
   def download_mini_statement
    pdf_file = TransactionService.new(current_user).run
    respond_to do |format|
    format.html
    format.pdf do
-   #pdf = Prawn::Document.new 
-
-      
+   #pdf = Prawn::Document.new   
    send_data pdf_file.render,
                   filename: "transaction.pdf",
                   type: 'application/pdf',
@@ -67,7 +61,6 @@ class TransactionsController < ApplicationController
      end
   end
    
-
 end
 
 
