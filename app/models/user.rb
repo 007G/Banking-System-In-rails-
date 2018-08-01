@@ -13,11 +13,11 @@ class User < ApplicationRecord
 
           has_and_belongs_to_many :benificiaries
 
-          accepts_nested_attributes_for :local_address
-          accepts_nested_attributes_for :permanent_address
+          #accepts_nested_attributes_for :local_address
+          #accepts_nested_attributes_for :permanent_address
 
-          mount_uploader :document, ImageUploader
-          mount_uploader :user_photo, ImageUploader
+          #mount_uploader :document, ImageUploader
+          #mount_uploader :user_photo, ImageUploader
 
           validates :first_name, presence: true
           validates :last_name,  presence: true

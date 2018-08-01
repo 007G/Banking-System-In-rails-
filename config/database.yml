@@ -91,3 +91,9 @@ development:
   encoding: unicode
   database: banking_system
   pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: banking_system
+  pool: 5
