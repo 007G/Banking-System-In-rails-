@@ -50,7 +50,6 @@ gem 'client_side_validations'
 
 
 
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -68,7 +67,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'shoulda'
-
+  gem 'factory_bot'
+ 
 end
 
 group :development do
