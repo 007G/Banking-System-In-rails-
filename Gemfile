@@ -48,6 +48,8 @@ gem 'country_select'
 
 gem 'client_side_validations'
 
+gem 'rails-controller-testing'
+
 
 
 # Use ActiveModel has_secure_password

@@ -12,6 +12,7 @@
       <td><%= transaction.created_at.strftime("%m/%d/%Y") %></td>
       <% if transaction.account_no == current_user.account_no %>
         <td><%= transaction.user.account.account_no %></td>
+        debugger;
         <td>Credit</td>
       <% else %>
         <td><%= transaction.account_no %></td>

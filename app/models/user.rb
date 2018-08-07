@@ -21,11 +21,11 @@ class User < ApplicationRecord
 
           validates :first_name, presence: true
           validates :last_name,  presence: true
-          validates :bank_name,  presence: true
-          validates :mobile_no, numericality: { only_integer: true }
-          validates :aadhar_no, numericality: { only_integer: true }
-          validates :document, presence: true
-          validates :user_photo, presence: true
+          #validates :bank_name,  presence: true
+          #validates :mobile_no, numericality: { only_integer: true }
+          #validates :aadhar_no, numericality: { only_integer: true }
+          #validates :document, presence: true
+          #validates :user_photo, presence: true
 
 
         
